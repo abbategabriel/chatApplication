@@ -1,13 +1,21 @@
 import React, { useState } from "react";
+import { sendMessage } from "../utils/msgApi";
 
 function TextBox() {
 
     const [newMessage, setNewMessage] = useState("");
+    const [userId, setUserId] = useState();
+    const [targetId, setTargetId] = useState();
 
-    function handleSend() {
+
+    const handleSend = () => {
         //not implemented 
-    }
+        var msg = new Message(1, newMessage, 1, 1);
+        sendMessage(msg);
+        
+    };
 
+    //public record Message(int Id, string Msg, int Sender, int Target);
     return (
         <div>
             <form className="text-input-form" onSubmit={(event) => handleSend()}>
@@ -26,6 +34,16 @@ function TextBox() {
             </form>
         </div>
     )
+}
+
+class Message {
+    // public record Message(int Id, string Msg, int Sender, int Target);
+    constructor(id, msg, sender, target) {
+        this.id = id;
+        this.msg = msg;
+        this.sender = sender;
+        this.target = target;
+    }
 }
 
 export default TextBox;
