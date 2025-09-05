@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "D2ZehFKAJE0=",
+  "success": true,
+  "projectFilePath": "/Users/gabrielabbate/Documents/Documents - Gabriel’s MacBook Air/projects/reactdotnetapp/api/api.csproj",
+  "expectedPackageFiles": [
+    "/Users/gabrielabbate/.nuget/packages/microsoft.aspnetcore.openapi/9.0.8/microsoft.aspnetcore.openapi.9.0.8.nupkg.sha512",
+    "/Users/gabrielabbate/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
