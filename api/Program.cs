@@ -4,7 +4,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+//cors
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod() //change to the correct port when you run client side
+    );
+});
+
 var app = builder.Build();
+
+app.UseCors("AllowSpecificOrigin");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -14,28 +24,29 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+var Msgs = new List<Message>();
 
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/messages", () =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+    return Msgs;
+});
+
+app.MapGet("/messages/{id}", (int id) =>
+{
+    return Msgs.SingleOrDefault(msg => id == msg.Id);
+});
+
+app.MapPost("/messages", (Message msg) =>
+{
+    Msgs.Add(msg);
+});
+
+app.MapDelete("/messages/{id}", (int id) =>
+{
+    Msgs.RemoveAll(msg => id == msg.Id);
+    return TypedResults.NoContent();
+});
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+public record Message(int Id, string Msg, int Sender, int Target);
