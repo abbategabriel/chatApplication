@@ -28,11 +28,9 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Message-container {
+  background-color: white;
+  width: 30rem;
+  height: 40rem;
+  border-radius: 1rem;
 }
