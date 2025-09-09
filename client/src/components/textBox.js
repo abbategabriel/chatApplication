@@ -10,8 +10,15 @@ function TextBox() {
 
     const handleSend = () => {
         //not implemented 
-        var msg = new Message(1, newMessage, 1, 1);
-        sendMessage(msg);
+        
+        const obj = {
+            "id": 1, 
+            "msg": newMessage,
+            "sender": 1,
+            "target": 1
+        };
+        console.log(`calling api with message ${obj}`);
+        sendMessage(obj);
         
     };
 
@@ -35,15 +42,13 @@ function TextBox() {
         </div>
     )
 }
-
-class Message {
-    // public record Message(int Id, string Msg, int Sender, int Target);
-    constructor(id, msg, sender, target) {
-        this.id = id;
-        this.msg = msg;
-        this.sender = sender;
-        this.target = target;
-    }
-}
-
+// class Message {
+//     // public record Message(int Id, string Msg, int Sender, int Target);
+//     constructor(id, msg, sender, target) {
+//         this.id = id;
+//         this.msg = msg;
+//         this.sender = sender;
+//         this.target = target;
+//     }
+// }
 export default TextBox;

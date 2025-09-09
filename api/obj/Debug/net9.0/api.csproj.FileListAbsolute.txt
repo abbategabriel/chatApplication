@@ -30,3 +30,4 @@
 /Users/gabrielabbate/Documents/Documents - Gabriel’s MacBook Air/projects/reactdotnetapp/api/obj/Debug/net9.0/api.pdb
 /Users/gabrielabbate/Documents/Documents - Gabriel’s MacBook Air/projects/reactdotnetapp/api/obj/Debug/net9.0/api.genruntimeconfig.cache
 /Users/gabrielabbate/Documents/Documents - Gabriel’s MacBook Air/projects/reactdotnetapp/api/obj/Debug/net9.0/ref/api.dll
+/Users/gabrielabbate/Documents/Documents - Gabriel’s MacBook Air/projects/reactdotnetapp/api/obj/Debug/net9.0/api.sourcelink.json

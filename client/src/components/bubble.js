@@ -1,6 +1,8 @@
-function Bubble() {
+import React from "react";
+
+function Bubble(text) {
     return ( 
-        <di></di>
+        <div className="bubble"><p>text</p></div>
     )
 }
 

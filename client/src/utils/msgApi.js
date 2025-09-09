@@ -2,6 +2,7 @@ export async function sendMessage(msg) {
     const jsonString = JSON.stringify(msg);
     console.log(msg);
     console.log(jsonString);
+    
     try {
 
         const response = await fetch( 
@@ -22,4 +23,17 @@ export async function sendMessage(msg) {
         console.error(`POST error: ${error}`);
         return "-1";
     }
+}
+
+export async function fetchMessages() {
+    const response = await fetch(
+        'http://localhost:5036/messages/',
+        {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include"
+        }
+    );
 }
