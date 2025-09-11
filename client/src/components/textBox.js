@@ -1,31 +1,32 @@
+//author: gabriel abbate abbategabriel@gmail.com
+
 import React, { useState } from "react";
 import { sendMessage } from "../utils/msgApi";
 
 function TextBox() {
-
     const [newMessage, setNewMessage] = useState("");
     const [userId, setUserId] = useState();
     const [targetId, setTargetId] = useState();
-
-
-    const handleSend = () => {
-        //not implemented 
-        
+    const handleSend = async (event) => {
+        event?.preventDefault();
         const obj = {
             "id": 1, 
             "msg": newMessage,
             "sender": 1,
             "target": 1
         };
-        console.log(`calling api with message ${obj}`);
-        sendMessage(obj);
-        
+        console.log(`calling api with message ${JSON.stringify(obj)}`);
+        try{
+            await sendMessage(obj);
+            setNewMessage("");
+        } catch (error) {
+            console.error("Failed to send message:", error);
+        }
     };
-
     //public record Message(int Id, string Msg, int Sender, int Target);
     return (
         <div>
-            <form className="text-input-form" onSubmit={(event) => handleSend()}>
+            <form className="text-input-form" onSubmit={(event) => handleSend(event)}>
                 <textarea
                     name="text-input"
                     value={newMessage}
@@ -42,13 +43,4 @@ function TextBox() {
         </div>
     )
 }
-// class Message {
-//     // public record Message(int Id, string Msg, int Sender, int Target);
-//     constructor(id, msg, sender, target) {
-//         this.id = id;
-//         this.msg = msg;
-//         this.sender = sender;
-//         this.target = target;
-//     }
-// }
 export default TextBox;
